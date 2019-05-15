@@ -32,7 +32,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     default void delete(User entity) {
 
     }
-
     @Override
     default void deleteAll(Iterable<? extends User> entities) {
 
