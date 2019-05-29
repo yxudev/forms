@@ -16,24 +16,19 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
+
     public UserService() {
     }
 
     @Transactional
-    public void createNewUser() {
-        User user = new User();
-        user.setUsername("");
-        user.setEmail();
-        save(user);
+    public User createNewUser(User newUser) {
+        save(newUser);
+        return newUser;
     }
 
-    public void createNewUser(User user) {
-        user.setUsername("");
-        user.setEmail();
-        save(user);
-    }
+    public User findById(Long Id) {
 
-    public User findById(Long userId) {
-        return null;
+        return userRepository.findById(Id).get();
     }
 }
