@@ -31,11 +31,11 @@ public class AppConfig {
 //        return bean;
 //    }
 //
-//    @Bean(name = "shareProperties")
-//    public PropertiesFactoryBean getSharedProperties() {
-//        PropertiesFactoryBean shareProperties = new PropertiesFactoryBean();
-//        shareProperties.setLocation(new ClassPathResource("META-INF/share-runtime.properties"));
-//        return shareProperties;
-//    }
+    @Bean(name = "shareProperties")
+    public PropertiesFactoryBean getSharedProperties() {
+        PropertiesFactoryBean shareProperties = new PropertiesFactoryBean();
+        shareProperties.setLocation(new ClassPathResource("META-INF/share-runtime.properties"));
+        return shareProperties;
+    }
 }
 

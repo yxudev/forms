@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -35,14 +34,13 @@ public class UserServiceTest {
         assertEquals(user, testUser);
     }
 
-//    @Test
-//    @Transactional
-//    public void findByIdTest() {
-//        User user = new User();
-//        user.setUsername("Tesla");
-//        user.setEmail("sedan@fox.com");
-//        User testUser = userService.findById(user.getId());
-//        assertNotNull(testUser);
-//        assertEquals(user.getId(), testUser.getId());
-//    }
+    @Test
+    @Transactional
+    public void findByIdTest() {
+        User user = new User();
+        userService.save(user);
+        User testUser = userService.findById(user.getId());
+        assertNotNull(testUser);
+        assertEquals(user.getId(), testUser.getId());
+    }
 }

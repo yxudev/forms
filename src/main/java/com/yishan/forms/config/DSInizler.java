@@ -26,7 +26,7 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = "com.yishan.forms.repository")
 public class DSInizler {
 
-    @Value("${database.serverName}")
+    @Value("jdbc:postgresql://${database.serverName}")
     protected String databaseUrl;
     @Value("${database.username}")
     protected String databaseUserName = "";
@@ -60,21 +60,21 @@ public class DSInizler {
         return dataSource;
     }
 
-//    @Bean(name="entityManagerFactory")
-//    @Profile({"dev","test","staging","prod"})
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
-//        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-//        factoryBean.setDataSource(getDataSource());
-//        factoryBean.setPackagesToScan(new String[] { "com.yishan.forms.domain","com.yishan.forms.repository" });
-//        factoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-//        Properties props = new Properties();
-//        props.put("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");
-//        props.put("hibernate.hbm2ddl.auto", "validate");
-//        props.put("hibernate.connection.charSet","UTF-8");
-//        props.put("hibernate.show_sql","false");
-//        factoryBean.setJpaProperties(props);
-//        return factoryBean;
-//    }
+    @Bean(name="entityManagerFactory")
+    @Profile({"dev","test","staging","prod"})
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setDataSource(getDataSource());
+        factoryBean.setPackagesToScan(new String[] { "com.yishan.forms.domain","com.yishan.forms.repository" });
+        factoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        Properties props = new Properties();
+        props.put("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");
+        props.put("hibernate.hbm2ddl.auto", "validate");
+        props.put("hibernate.connection.charSet","UTF-8");
+        props.put("hibernate.show_sql","false");
+        factoryBean.setJpaProperties(props);
+        return factoryBean;
+    }
 
     @Bean(name="entityManagerFactory")
     @Profile({"unit"})
